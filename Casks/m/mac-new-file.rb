@@ -7,13 +7,13 @@ cask "mac-new-file" do
   desc "Add a \"New File\" Quick Action to macOS Finder's right-click menu"
   homepage "https://github.com/yechaozheng2-dotcom/mac-new-file"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   artifact "mac-new-file-main/dist/NewFile.workflow",
            target: "#{Dir.home}/Library/Services/NewFile.workflow"
 
-  postflight do
-    system_command "/System/Library/CoreServices/pbs", args: ["-flush"], must_succeed: false
+  postflight_steps do
+    run "/System/Library/CoreServices/pbs", args: ["-flush"], must_succeed: false
   end
 
   caveats <<~EOS
