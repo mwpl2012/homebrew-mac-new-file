@@ -12,7 +12,7 @@ class MacNewFile < Formula
     prefix.install "dist/NewFile.workflow"
   end
 
-  def post_install
+  def post_install_steps
     services_dir = Pathname.new(Dir.home)/"Library/Services"
     services_dir.mkpath
     cp_r prefix/"NewFile.workflow", services_dir
